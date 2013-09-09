@@ -1,0 +1,7 @@
+<h4>
+    <i class="icon-user icon-fixed-width margin-5"></i>My Status
+</h4>
+<ul class="list-unstyled">
+    <li class="text-info"><i class="icon-key icon-fixed-width margin-5"></i> Private Key - <i class="icon-ok"></i></li>
+    <li class="text-warning"><i class="icon-cloud icon-fixed-width margin-5"></i> Space Station - <i class="icon-question"></i></li>
+</ul>
