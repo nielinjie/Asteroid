@@ -1,5 +1,5 @@
 requirejs.config({
-    "baseUrl": "/js",
+    "baseUrl": "./js",
     "paths": {
         "jquery": "libs/jquery-2.0.2.min",
         "underscore": "libs/underscore-min",

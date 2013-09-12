@@ -7,7 +7,18 @@
     filename: "./data/items",
     autoload: true
   });
-  exports.items = function(cb){
-    return db.items.find({}, cb);
-  };
+  db.items.ensureIndex({
+    fieldname: 'id',
+    unique: true
+  });
+  db.users = new nedb({
+    filename: "./data/users",
+    autoload: true
+  });
+  db.users.ensureIndex({
+    fieldname: 'id',
+    unique: true
+  });
+  exports.items = db.items;
+  exports.users = db.users;
 }).call(this);

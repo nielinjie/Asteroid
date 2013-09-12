@@ -3,11 +3,26 @@
   var express, app, db;
   express = require('express');
   app = express();
+  app.use('/public', express['static']('../public'));
+  app.use(express.bodyParser());
   db = require('./db.js');
-  app.get('/', function(req, res){
-    return db.items(function(err, data){
+  app.get('/items', function(req, res){
+    return db.items.find({}, function(err, data){
       res.type('text/json');
       return res.send(data);
+    });
+  });
+  app.get('/users', function(req, res){
+    return db.users.find({}, function(err, data){
+      res.type('text/json');
+      return res.send(data);
+    });
+  });
+  app.post('/items', function(req, res){
+    var item;
+    item = req.body;
+    return db.items.insert(item, function(){
+      return res.status(201).send(item.id);
     });
   });
   app.listen(process.env.PORT || 4730);

@@ -7,7 +7,7 @@
   data = fs.readFileSync(__dirname + "/dummy.txt", {
     encoding: 'utf8'
   });
-  exports.items = _.chain(data.split('\n')).map(function(it){
+  exports.texts = _.chain(data.split('\n')).map(function(it){
     return it.trim();
   }).filter(function(it){
     return it !== '';

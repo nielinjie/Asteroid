@@ -1,25 +1,37 @@
-define [\items/item,\./dummyText, \./dummyUsers, \underscore,\util] (its,duT,dU,_,util)->
-  dummyUsers =_.chain(dU)
-    .pluck \user
-    .shuffle!
-    .value!
-  userNum=_(dummyUsers).size!
-  dummyItems=_(duT).map ->
-      its.newItem(it,dummyUsers[util.random(userNum)].sha1_hash)
+define [\items/item,\underscore,\util,\jquery] (its,_,util,$)->
+  users=[]
+  $ .ajax \/users ,
+  {async:false,dataType:\json}
+  .done ->
+    users:=it
+  items=[]
+  $ .ajax \/items ,
+  {async:false,dataType:\json}
+  .done ->
+    items:=it
 
   status: ->
     items: 983
     meta: 307
     keys: 125
   items: ->
-    dummyItems
+    items
   me: ->
-    dummyUsers[0]
+    users[0]
   friends: ->
-    dummyUsers
-  item: (id)->
-    _(dummyItems).find ->
-      it.id==id
+    users
+
+
   friend: (id)->
-    _(dummyUsers).find ->
-      it.sha1_hash==id #FIXME
+    _(users).find ->
+      it.id==id
+
+  postItem: (item) ->
+    $ .ajax \/items , do
+      async:true
+      type:\POST
+      data: item
+      dataType: \json
+    .done ->
+      users.push(item)
+

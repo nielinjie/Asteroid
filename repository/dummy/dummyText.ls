@@ -4,7 +4,7 @@ require! \fs
 
 data=fs.readFileSync("#{__dirname}/dummy.txt", encoding:'utf8')
 
-exports.items= do
+exports.texts= do
   _.chain(data.split('\n')).map ->
     it.trim!
   .filter ->
