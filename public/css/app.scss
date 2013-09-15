@@ -1,3 +1,17 @@
+
+$blue: #3d5d7b;
+$yellow: #c39f4a;
+$green: #3b8057;
+$red: #7c2107;
+
+
+//light to dark
+$blue0: lighten($blue,80%);
+$blue1: lighten($blue,60%);
+$blue2: lighten($blue,40%);
+$blue3: lighten($blue,30%);
+
+
 @import "friend";
 @import "item";
 @import "me";

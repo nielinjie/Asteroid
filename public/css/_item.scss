@@ -1,29 +1,43 @@
-.items .avatar img{
+.items .avatar img {
   width: 64px;
   height: 64px;
   float: left;
   margin-right: 5px;
 }
 
-
-
 .items-list .list-group-item {
+  &.hover {
+    background-color: $blue1;
+  }
   min-height: 84px;
   position: relative;
-  .avatar-p{
+  .item-main{
+    position: relative;
+  }
+  .avatar-p {
     display: inline-block;
   }
-  .text-p{
+  .text-p {
     display: inline-block;
     vertical-align: top;
     max-width: 75%;
   }
-  .button-toolbar{
 
-  }
-  .button-p{
+  &.hover .button-p {
+    display: table;
     position: absolute;
     right: 5px;
     bottom: 5px;
+    .act-btn.yes {
+      color: $blue;
+    }
   }
+  .button-p {
+    display: none;
+  }
+  .item-status {
+    color: $blue3;
+    font-size: x-small;
+  }
+
 }

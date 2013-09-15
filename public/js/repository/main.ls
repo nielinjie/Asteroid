@@ -1,4 +1,5 @@
 define [\items/item,\underscore,\util,\jquery] (its,_,util,$)->
+  #FIXME sync work
   users=[]
   $ .ajax \/users ,
   {async:false,dataType:\json}
@@ -34,4 +35,7 @@ define [\items/item,\underscore,\util,\jquery] (its,_,util,$)->
       dataType: \json
     .done ->
       users.push(item)
-
+  findItem: (f) ->
+    #FIXME go to repository
+    _(items).filter ->
+      f(it)

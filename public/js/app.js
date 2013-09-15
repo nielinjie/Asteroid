@@ -5,7 +5,8 @@ requirejs.config({
         "underscore": "libs/underscore-min",
         "bootstrap": "libs/bootstrap.min",
         "jqueryui":'libs/jquery-ui-1.9.2.custom.min',
-        "uuid":"libs/uuid"
+        "uuid":"libs/uuid",
+        "moment":"libs/moment+langs.min"
     },
     "packages":[
         {name:"items"},

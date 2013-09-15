@@ -47,6 +47,11 @@
         }).done(function(){
           return users.push(item);
         });
+      },
+      findItem: function(f){
+        return _(items).filter(function(it){
+          return f(it);
+        });
       }
     };
   });

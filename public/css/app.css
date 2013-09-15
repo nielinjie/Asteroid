@@ -16,16 +16,28 @@
 .items-list .list-group-item {
   min-height: 84px;
   position: relative; }
+  .items-list .list-group-item.hover {
+    background-color: #f2f5f8; }
+  .items-list .list-group-item .item-main {
+    position: relative; }
   .items-list .list-group-item .avatar-p {
     display: inline-block; }
   .items-list .list-group-item .text-p {
     display: inline-block;
     vertical-align: top;
     max-width: 75%; }
-  .items-list .list-group-item .button-p {
+  .items-list .list-group-item.hover .button-p {
+    display: table;
     position: absolute;
     right: 5px;
     bottom: 5px; }
+    .items-list .list-group-item.hover .button-p .act-btn.yes {
+      color: #3d5d7b; }
+  .items-list .list-group-item .button-p {
+    display: none; }
+  .items-list .list-group-item .item-status {
+    color: #8ba9c6;
+    font-size: x-small; }
 
 .me .avatar {
   display: inline-block; }
