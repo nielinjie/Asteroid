@@ -2,7 +2,8 @@
   width: 64px;
   height: 64px;
   float: left;
-  margin-right: 5px; }
+  margin-right: 5px;
+  border-radius: 32px; }
 
 .friends-list .list-group-item {
   min-height: 84px; }
@@ -11,15 +12,24 @@
   width: 64px;
   height: 64px;
   float: left;
-  margin-right: 5px; }
+  margin-right: 5px;
+  margin-top: 5px;
+  border-radius: 32px; }
 
 .items-list .list-group-item {
+  z-index: 0;
   min-height: 84px;
   position: relative; }
   .items-list .list-group-item.hover {
-    background-color: #f2f5f8; }
+    background-color: #dde7f3; }
+    .items-list .list-group-item.hover .type {
+      color: white; }
   .items-list .list-group-item .item-main {
-    position: relative; }
+    position: relative;
+    z-index: 2; }
+    .items-list .list-group-item .item-main h5 {
+      display: inline-block;
+      margin-right: 50px; }
   .items-list .list-group-item .avatar-p {
     display: inline-block; }
   .items-list .list-group-item .text-p {
@@ -31,20 +41,35 @@
     position: absolute;
     right: 5px;
     bottom: 5px; }
-    .items-list .list-group-item.hover .button-p .act-btn.yes {
-      color: #3d5d7b; }
   .items-list .list-group-item .button-p {
     display: none; }
   .items-list .list-group-item .item-status {
-    color: #8ba9c6;
-    font-size: x-small; }
+    color: #477fbd;
+    font-size: smaller; }
+    .items-list .list-group-item .item-status .flags {
+      float: right; }
+  .items-list .list-group-item .item-brief {
+    min-height: 35px;
+    margin-bottom: 10px;
+    margin-left: 20px; }
+    .items-list .list-group-item .item-brief .avatar img {
+      width: 32px;
+      height: 32px;
+      border-radius: 16px; }
+    .items-list .list-group-item .item-brief .text-p {
+      font-size: small; }
+  .items-list .list-group-item .comment-letter {
+    margin-right: 5px;
+    font-size: large;
+    color: #b8cde5; }
 
 .me .avatar {
   display: inline-block; }
   .me .avatar img {
     width: 64px;
     height: 64px;
-    margin-right: 5px; }
+    margin-right: 5px;
+    border-radius: 32px; }
 .me .name {
   display: inline-block; }
 

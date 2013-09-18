@@ -1,41 +1,52 @@
 define [\items/item,\underscore,\util,\jquery] (its,_,util,$)->
-  #FIXME sync work
-  users=[]
-  $ .ajax \/users ,
-  {async:false,dataType:\json}
-  .done ->
-    users:=it
-  items=[]
-  $ .ajax \/items ,
-  {async:false,dataType:\json}
-  .done ->
-    items:=it
 
-  status: ->
-    items: 983
+
+
+  status= ->
+    items: items!.length
     meta: 307
-    keys: 125
-  items: ->
-    items
-  me: ->
-    users[0]
-  friends: ->
-    users
+    keys: users!.length
 
-
-  friend: (id)->
-    _(users).find ->
+  items= util.memorize ->
+    _items=[]
+    $ .ajax \/items ,
+      {async:false,dataType:\json}
+    .done ->
+      _items:=it
+    _items
+  item=(id)->
+    _(items!).find ->
       it.id==id
 
-  postItem: (item) ->
+  me= ->
+    users! .0
+
+  users = util.memorize ->
+    _users=[]
+    $ .ajax \/users ,
+    {async:false,dataType:\json}
+    .done ->
+      _users:=it
+    _users
+
+  friends=users
+
+  friend= (id)->
+    _(users!).find ->
+      it.id==id
+
+  postItem= (item) ->
+    items.del!
+#    users.del!
     $ .ajax \/items , do
-      async:true
+      async:false
       type:\POST
       data: item
       dataType: \json
-    .done ->
-      users.push(item)
-  findItem: (f) ->
+
+
+  findItem=  (where) ->
     #FIXME go to repository
-    _(items).filter ->
-      f(it)
+    _(items!).where where
+
+  {status,items,item,me,friends,friend,postItem,findItem}

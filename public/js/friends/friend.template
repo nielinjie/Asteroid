@@ -1,4 +1,6 @@
 <div class="list-group-item">
     <div class="avatar"><img src="<%=picture%>"/></div>
-    <p class="list-group-item-text"><%=name.first%> <%=name.last%></p>
+    <p class="list-group-item-text">
+        <h5><%=name.first%> <%=name.last%></h5>
+    </p>
 </div>
