@@ -8,7 +8,12 @@
 
 }
 
+.items-list {
+  height: 600px;
+  overflow-y: auto;
+}
 .items-list .list-group-item {
+
   z-index: 0;
   //.type{
   //  position: absolute;

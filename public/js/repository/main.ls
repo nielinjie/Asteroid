@@ -63,6 +63,11 @@ define [\items/item,\version,\underscore,\util,\jquery] (its,version,_,util,$)->
     items.del!
     post \/items item
 
+  itemByUser=(userId) ->
+    _(items!).filter ->
+      it.author == userId
+
+
 
 
 
@@ -70,4 +75,4 @@ define [\items/item,\version,\underscore,\util,\jquery] (its,version,_,util,$)->
     #FIXME go to repository
     _(items!).where where
 
-  {status,items,item,me,setMe,friends,friend,postItem,findItem,users,user}
+  {status,items,item,me,setMe,friends,friend,postItem,findItem,users,user,itemByUser}

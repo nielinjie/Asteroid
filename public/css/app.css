@@ -8,6 +8,10 @@
   margin-right: 5px;
   border-radius: 32px; }
 
+.friends-list {
+  height: 600px;
+  overflow-y: auto; }
+
 .friends-list .list-group-item {
   min-height: 84px; }
 
@@ -18,6 +22,10 @@
   margin-right: 5px;
   margin-top: 5px;
   border-radius: 32px; }
+
+.items-list {
+  height: 600px;
+  overflow-y: auto; }
 
 .items-list .list-group-item {
   z-index: 0;

@@ -9,6 +9,7 @@
     view = function(){
       $('.friends').append($(temp()));
       return _(repo.friends()).each(function(u){
+        u = (u.itemCount = repo.itemByUser(u.id).length, u);
         return $('.friends-list').append($(ftemp(u)));
       });
     };
