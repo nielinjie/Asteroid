@@ -1,10 +1,12 @@
+<div class="panel-heading">Asteroid</div>
+
 <div class="panel-body">
     <div class="form-inline row">
         <div class="col-lg-10">
-            <input class="form-control" type="text" placeholder="信息……"/>
+            <input class="form-control text-send" type="text" placeholder="信息……"/>
         </div>
         <div class="col-lg-2">
-            <button class="form-control btn btn-primary">发送</button>
+            <button class="form-control btn btn-primary btn-send">发送</button>
         </div>
     </div>
 </div>

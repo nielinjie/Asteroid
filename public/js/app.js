@@ -1,11 +1,12 @@
 requirejs.config({
-    "baseUrl": "/js",
+    "baseUrl": "./js",
     "paths": {
         "jquery": "libs/jquery-2.0.2.min",
         "underscore": "libs/underscore-min",
         "bootstrap": "libs/bootstrap.min",
         "jqueryui":'libs/jquery-ui-1.9.2.custom.min',
-        "uuid":"libs/uuid"
+        "uuid":"libs/uuid",
+        "moment":"libs/moment+langs.min"
     },
     "packages":[
         {name:"items"},
@@ -19,11 +20,14 @@ requirejs.config({
         },
         uuid:{
             exports:'UUID'
+        },
+        bootstrap: {
+            deps: ['jquery']
         }
     }
 });
 
-requirejs(["main"]);
+requirejs(["bootstrap","main"]);
 
 
 // Load the main app module to start the app

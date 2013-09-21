@@ -3,6 +3,6 @@
 </h4>
 <ul class="list-unstyled">
     <li class="text-info"><i class="icon-comments icon-fixed-width margin-5"></i> Items - <%=items%></li>
-    <li class="text-info"><i class="icon-group icon-fixed-width margin-5"></i> Keys - <%=keys%></li>
-    <li class="text-info"><i class="icon-cog icon-fixed-width margin-5"></i> Meta - <%=meta%></li>
+    <li class="text-info"><i class="icon-group icon-fixed-width margin-5"></i> Users - <%=keys%></li>
+    <!--<li class="text-info"><i class="icon-cog icon-fixed-width margin-5"></i> Meta - <%=meta%></li>-->
 </ul>

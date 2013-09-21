@@ -1,0 +1,6 @@
+<div class="item-brief">
+    <div class="avatar"><img src="<%=picture%>"/></div>
+    <div class="list-group-item-text text-p">
+        <p><%=text%></p>
+    </div>
+</div>

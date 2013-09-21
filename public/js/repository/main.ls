@@ -1,25 +1,78 @@
-define [\items/item,\./dummyText, \./dummyUsers, \underscore,\util] (its,duT,dU,_,util)->
-  dummyUsers =_.chain(dU)
-    .pluck \user
-    .shuffle!
-    .value!
-  userNum=_(dummyUsers).size!
-  dummyItems=_(duT).map ->
-      its.newItem(it,dummyUsers[util.random(userNum)].sha1_hash)
+define [\items/item,\version,\underscore,\util,\jquery] (its,version,_,util,$)->
+  refresh = ->
 
-  status: ->
-    items: 983
+  get=(url) ->
+    _re=[]
+    $ .ajax url ,
+      {async:false,dataType:\json}
+    .done ->
+      _re:=it
+    _re
+  post=(url, data) ->
+    $ .ajax url , do
+      async:false
+      type:\POST
+      data: data
+      dataType: \json
+
+  put=(url, data) ->
+    $ .ajax url , do
+      async:false
+      type:\PUT
+      data: data
+      dataType: \json
+
+  status= ->
+    items: items!.length
     meta: 307
-    keys: 125
-  items: ->
-    dummyItems
-  me: ->
-    dummyUsers[0]
-  friends: ->
-    dummyUsers
-  item: (id)->
-    _(dummyItems).find ->
+    keys: users!.length
+
+  items= util.memorize ->
+    version.firstByVersionForAll (get \/items)
+
+  item=(id)->
+    _(items!).find ->
       it.id==id
-  friend: (id)->
-    _(dummyUsers).find ->
-      it.sha1_hash==id #FIXME
+
+  setMe = (user) ->
+    users.del!
+    meUser=me!
+    meUser.name <<< user.name
+    meUser <<< _(user).omit \name
+    put \/me meUser
+    me.del!
+
+  me= util.memorize ->
+    get \/me
+
+  users = util.memorize ->
+    version.firstByVersionForAll (get \/users)
+  user = (id)->
+    _(users!).find ->
+      it.id==id
+
+  friends= ->
+    users! .filter ->
+      it.id !== me!.id
+
+  friend= (id)->
+    _(friends!).find ->
+      it.id==id
+
+  postItem= (item) ->
+    items.del!
+    post \/items item
+
+  itemByUser=(userId) ->
+    _(items!).filter ->
+      it.author == userId
+
+
+
+
+
+  findItem=  (where) ->
+    #FIXME go to repository
+    _(items!).where where
+
+  {status,items,item,me,setMe,friends,friend,postItem,findItem,users,user,itemByUser}

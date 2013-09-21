@@ -1,8 +1,16 @@
+.popover {
+  max-width: 1000px; }
+
 .friends .avatar img {
   width: 64px;
   height: 64px;
   float: left;
-  margin-right: 5px; }
+  margin-right: 5px;
+  border-radius: 32px; }
+
+.friends-list {
+  height: 600px;
+  overflow-y: auto; }
 
 .friends-list .list-group-item {
   min-height: 84px; }
@@ -11,19 +19,80 @@
   width: 64px;
   height: 64px;
   float: left;
-  margin-right: 5px; }
+  margin-right: 5px;
+  margin-top: 5px;
+  border-radius: 32px; }
+
+.items-list {
+  height: 600px;
+  overflow-y: auto; }
 
 .items-list .list-group-item {
-  min-height: 84px; }
+  z-index: 0;
+  min-height: 84px;
+  position: relative; }
+  .items-list .list-group-item.hover {
+    background-color: #dde7f3; }
+    .items-list .list-group-item.hover .type {
+      color: white; }
+  .items-list .list-group-item .item-main {
+    position: relative;
+    z-index: 2; }
+    .items-list .list-group-item .item-main h5 {
+      display: inline-block;
+      margin-right: 50px; }
+  .items-list .list-group-item .avatar-p {
+    display: inline-block; }
+  .items-list .list-group-item .text-p {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 75%; }
+  .items-list .list-group-item.hover .button-p {
+    display: table;
+    position: absolute;
+    right: 5px;
+    bottom: 5px; }
+  .items-list .list-group-item .button-p {
+    display: none; }
+  .items-list .list-group-item .item-status {
+    color: #477fbd;
+    font-size: smaller; }
+    .items-list .list-group-item .item-status .flags {
+      float: right; }
+  .items-list .list-group-item .item-brief {
+    min-height: 35px;
+    margin-bottom: 10px;
+    margin-left: 20px; }
+    .items-list .list-group-item .item-brief .avatar img {
+      width: 32px;
+      height: 32px;
+      border-radius: 16px; }
+    .items-list .list-group-item .item-brief .text-p {
+      font-size: small; }
+  .items-list .list-group-item .comment-letter {
+    margin-right: 5px;
+    font-size: large;
+    color: #b8cde5; }
 
 .me .avatar {
   display: inline-block; }
   .me .avatar img {
     width: 64px;
     height: 64px;
-    margin-right: 5px; }
+    margin-right: 5px;
+    border-radius: 32px; }
 .me .name {
   display: inline-block; }
+
+.edit-me {
+  min-width: 600px; }
+  .edit-me .avatar {
+    margin-top: 5px; }
+    .edit-me .avatar img {
+      width: 64px;
+      height: 64px;
+      margin-right: 5px;
+      border-radius: 32px; }
 
 .jumbotron {
   padding: 2px; }

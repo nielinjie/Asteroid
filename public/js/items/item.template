@@ -1,6 +1,71 @@
-<div class="list-group-item">
-    <p class="list-group-item-heading">
-        <div class="avatar"><img src="<%=author.picture%>"/></div>
-        <%=author.name.first%> <%=author.name.last%></p>
-    <p class="list-group-item-text"><%=text%></p>
+<div class="list-group-item" data-id=<%=id%>>
+    <%if (isComment) {%>
+    <div class="comment-ref hide">
+        <%=briefTemplate(commentRef)%>
+    </div>
+    <%}%>
+    <div class="item-main">
+
+        <div class="item-status">
+            <div class="flags">
+                <% if(iCommentIt) {%>
+                <span class="label label-info">iComment</span>
+                <%}%>
+                <% if(iUpIt) {%>
+                <span class="label label-success">iUp</span>
+                <%}%>
+                <% if(iDownIt) {%>
+                <span class="label label-warning">iDown</span>
+                <%}%>
+            </div>
+            <ul class="list-inline">
+                <li><i class="icon-time margin-5"></i><%=timeAgo%></li>
+                <li><i class="icon-hand-up margin-5"></i><%=upNum%></li>
+                <li><i class="icon-hand-down margin-5"></i><%=downNum%></li>
+                <li><i class="icon-comments-alt margin-5"></i><%=commentNum%></li>
+            </ul>
+        </div>
+        <div class="list-group-item-heading avatar-p">
+            <div class="avatar"><img src="<%=authorObj.picture%>"/></div>
+        </div>
+
+        <div class="list-group-item-text text-p">
+            <h5><%=authorObj.name.first%> <%=authorObj.name.last%></h5>
+            <p>
+                <span class="comment-letter"><%if (isComment) {%><i class="icon-comment-alt"><%}%></i></span>
+                <%=text%>
+            </p>
+        </div>
+
+        <div class="btn-toolbar button-p">
+            <div class="btn-group  btn-group-xs">
+
+                <div class="btn  up-button btn-default act-btn "><i class="icon-hand-up"></i>
+                </div>
+                <div class="btn  down-button btn-default act-btn "><i
+                        class="icon-hand-down"></i></div>
+                <div class="btn comment-button btn-default act-btn "><i
+                        class="icon-comment-alt"></i></div>
+            </div>
+            <div class="btn-group btn-group-xs">
+                <div class="btn expand-button btn-default"><i class="icon-plus"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-text hide">
+        <div class="form-inline row">
+            <div class="col-lg-8">
+                <input class="form-control text-comment" type="text" placeholder="评论……"/>
+            </div>
+
+        </div>
+    </div>
+    <%if (hasComments) {%>
+    <div class="comments hide">
+        <%for (i in comments) {%>
+            <%=briefTemplate(comments[i])%>
+        <%}%>
+    </div>
+    <%}%>
 </div>
