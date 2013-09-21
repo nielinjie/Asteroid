@@ -20,11 +20,14 @@ requirejs.config({
         },
         uuid:{
             exports:'UUID'
+        },
+        bootstrap: {
+            deps: ['jquery']
         }
     }
 });
 
-requirejs(["main"]);
+requirejs(["bootstrap","main"]);
 
 
 // Load the main app module to start the app

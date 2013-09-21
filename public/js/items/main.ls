@@ -6,7 +6,6 @@ define [\repository, \template!./items,\template!./item,\template!./itemBrief, \
       id: new uuid().toString!
       author: repo.me!.id
       date:new Date()
-      version:1
     repo.postItem item
     item
 
@@ -16,7 +15,6 @@ define [\repository, \template!./items,\template!./item,\template!./itemBrief, \
       id: new uuid().toString!
       author: repo.me!.id
       date:new Date()
-      version:1
       ref:refId
       type:\comment
     repo.postItem item
@@ -27,7 +25,6 @@ define [\repository, \template!./items,\template!./item,\template!./itemBrief, \
       id: new uuid().toString!
       author: repo.me!.id
       date:new Date()
-      version:1
       ref:refId
       type:\up
     repo.postItem item
@@ -38,7 +35,6 @@ define [\repository, \template!./items,\template!./item,\template!./itemBrief, \
       id: new uuid().toString!
       author: repo.me!.id
       date:new Date()
-      version:1
       ref:refId
       type:\down
     repo.postItem item
@@ -78,10 +74,15 @@ define [\repository, \template!./items,\template!./item,\template!./itemBrief, \
       author: repo.me().id
     .length >0
 
-  view: ->
+
+  update= ->
+     $ \.items .empty!
+     view!
+
+  view= ->
     displayItem= ->
       item=it<<<{
-        authorObj:repo.friend(it.author)
+        authorObj:repo.user(it.author)
         timeAgo:util.timeAgo(it.date)
         downNum:countDown(it.id)
         upNum:countUp(it.id)
@@ -96,7 +97,7 @@ define [\repository, \template!./items,\template!./item,\template!./itemBrief, \
         ref=repo.item(item.ref)
         item<<<{
           commentRef: {
-            picture:repo.friend(ref.author).picture
+            picture:repo.user(ref.author).picture
             text:ref.text
             textBrief:util.brief(ref.text,35)
           }
@@ -110,7 +111,7 @@ define [\repository, \template!./items,\template!./item,\template!./itemBrief, \
           hasComments:true
           comments:_(comments) .map ->
             {
-              picture:repo.friend(it.author).picture
+              picture:repo.user(it.author).picture
               text:it.text
               textBrief:util.brief(it.text,35)
             }
@@ -168,3 +169,4 @@ define [\repository, \template!./items,\template!./item,\template!./itemBrief, \
       ($(e .target) .closest \.list-group-item )[if e.type == \mouseenter then \addClass else \removeClass] \hover
       e.preventDefault!
 
+  {update,view}

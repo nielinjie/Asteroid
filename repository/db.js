@@ -19,6 +19,11 @@
     fieldname: 'id',
     unique: true
   });
+  db.me = new nedb({
+    filename: "./data/me",
+    autoload: true
+  });
   exports.items = db.items;
   exports.users = db.users;
+  exports.me = db.me;
 }).call(this);

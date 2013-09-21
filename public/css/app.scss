@@ -4,6 +4,9 @@ $yellow: #c39f4a;
 $green: #3b8057;
 $red: #7c2107;
 
+.popover {
+  max-width: 1000px;
+}
 
 //light to dark
 $blue0: lighten($blue,80%);

@@ -1,6 +1,26 @@
-define [\items/item,\underscore,\util,\jquery] (its,_,util,$)->
+define [\items/item,\version,\underscore,\util,\jquery] (its,version,_,util,$)->
+  refresh = ->
 
+  get=(url) ->
+    _re=[]
+    $ .ajax url ,
+      {async:false,dataType:\json}
+    .done ->
+      _re:=it
+    _re
+  post=(url, data) ->
+    $ .ajax url , do
+      async:false
+      type:\POST
+      data: data
+      dataType: \json
 
+  put=(url, data) ->
+    $ .ajax url , do
+      async:false
+      type:\PUT
+      data: data
+      dataType: \json
 
   status= ->
     items: items!.length
@@ -8,45 +28,46 @@ define [\items/item,\underscore,\util,\jquery] (its,_,util,$)->
     keys: users!.length
 
   items= util.memorize ->
-    _items=[]
-    $ .ajax \/items ,
-      {async:false,dataType:\json}
-    .done ->
-      _items:=it
-    _items
+    version.firstByVersionForAll (get \/items)
+
   item=(id)->
     _(items!).find ->
       it.id==id
 
-  me= ->
-    users! .0
+  setMe = (user) ->
+    users.del!
+    meUser=me!
+    meUser.name <<< user.name
+    meUser <<< _(user).omit \name
+    put \/me meUser
+    me.del!
+
+  me= util.memorize ->
+    get \/me
 
   users = util.memorize ->
-    _users=[]
-    $ .ajax \/users ,
-    {async:false,dataType:\json}
-    .done ->
-      _users:=it
-    _users
+    version.firstByVersionForAll (get \/users)
+  user = (id)->
+    _(users!).find ->
+      it.id==id
 
-  friends=users
+  friends= ->
+    users! .filter ->
+      it.id !== me!.id
 
   friend= (id)->
-    _(users!).find ->
+    _(friends!).find ->
       it.id==id
 
   postItem= (item) ->
     items.del!
-#    users.del!
-    $ .ajax \/items , do
-      async:false
-      type:\POST
-      data: item
-      dataType: \json
+    post \/items item
+
+
 
 
   findItem=  (where) ->
     #FIXME go to repository
     _(items!).where where
 
-  {status,items,item,me,friends,friend,postItem,findItem}
+  {status,items,item,me,setMe,friends,friend,postItem,findItem,users,user}
