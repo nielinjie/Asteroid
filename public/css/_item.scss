@@ -13,7 +13,20 @@
   overflow-y: auto;
 }
 .items-list .list-group-item {
-
+  .comments {
+    display:none
+  }
+  .comment-ref {
+    display: none;
+  }
+  &.expand {
+    .comments {
+      display:block;
+    }
+    .comment-ref {
+      display: block;
+    }
+  }
   z-index: 0;
   //.type{
   //  position: absolute;
@@ -78,6 +91,12 @@
     }
     .text-p {
       font-size: small;
+    }
+    .goto{
+      display: none;
+    }
+    &.hover .goto{
+      display: inline-block;
     }
     margin-left: 20px;
   }

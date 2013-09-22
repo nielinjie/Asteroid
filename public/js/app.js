@@ -6,7 +6,8 @@ requirejs.config({
         "bootstrap": "libs/bootstrap.min",
         "jqueryui":'libs/jquery-ui-1.9.2.custom.min',
         "uuid":"libs/uuid",
-        "moment":"libs/moment+langs.min"
+        "moment":"libs/moment+langs.min",
+        'scrollTo':'libs/jquery.scrollTo.min'
     },
     "packages":[
         {name:"items"},
@@ -23,6 +24,9 @@ requirejs.config({
         },
         bootstrap: {
             deps: ['jquery']
+        },
+        scrollTo:{
+            deps:['jquery']
         }
     }
 });
