@@ -1,6 +1,6 @@
 <div class="list-group-item" data-id=<%=id%>>
     <%if (isComment) {%>
-    <div class="comment-ref hide">
+    <div class="comment-ref">
         <%=briefTemplate(commentRef)%>
     </div>
     <%}%>
@@ -62,7 +62,7 @@
         </div>
     </div>
     <%if (hasComments) {%>
-    <div class="comments hide">
+    <div class="comments">
         <%for (i in comments) {%>
             <%=briefTemplate(comments[i])%>
         <%}%>

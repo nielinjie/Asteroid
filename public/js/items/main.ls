@@ -1,4 +1,4 @@
-define [\repository, \template!./items,\template!./item,\template!./itemBrief, \jquery,\underscore,\uuid,\util] , (repo,temp,itemp,briefT,$,_,uuid,util)->
+define [\repository, \template!./items,\template!./item,\template!./itemBrief, \scrollTo,\jquery,\underscore,\uuid,\util] , (repo,temp,itemp,briefT,scrollTo,$,_,uuid,util)->
 
   addItem= (text)->
     item=do
@@ -97,6 +97,7 @@ define [\repository, \template!./items,\template!./item,\template!./itemBrief, \
         ref=repo.item(item.ref)
         item<<<{
           commentRef: {
+            id:ref.id
             picture:repo.user(ref.author).picture
             text:ref.text
             textBrief:util.brief(ref.text,35)
@@ -111,6 +112,7 @@ define [\repository, \template!./items,\template!./item,\template!./itemBrief, \
           hasComments:true
           comments:_(comments) .map ->
             {
+              id:it.id
               picture:repo.user(it.author).picture
               text:it.text
               textBrief:util.brief(it.text,35)
@@ -132,11 +134,17 @@ define [\repository, \template!./items,\template!./item,\template!./itemBrief, \
         $(\.items-list) .append displayItem(it)
 
     $ \.text-send .val ''
-    $(\.btn-send) .click -> addItem $(\.text-send).val!
+
+    $(\.btn-send) .click ->
+      item=addItem $(\.text-send).val!
+      $ \.text-send .val ''
+      $(\.items-list) .prepend displayItem(item)
+
     $(\.text-send) .keydown ->
       if it.which == 13
         it.preventDefault!
         item=addItem $(\.text-send).val!
+        $ \.text-send .val ''
         $(\.items-list) .prepend displayItem(item)
 
     $(\.items-list).on \keydown , \.text-comment , (e)->
@@ -148,6 +156,7 @@ define [\repository, \template!./items,\template!./item,\template!./itemBrief, \
         item=addComment(refId,text)
         $(\.items-list) .prepend displayItem(item)
         updateItem(refId)
+        tf.val ''
 
     $(\.items-list).on \click , \.up-button , (e)->
       refId=$(e .target) .closest \.list-group-item .data(\id)
@@ -159,14 +168,30 @@ define [\repository, \template!./items,\template!./item,\template!./itemBrief, \
       updateItem(refId)
 
     $(\.items-list).on \click , \.expand-button , (e)->
-      itemD= $(e.target) .closest \.list-group-item
-      itemD .find \.comment-ref ?.toggleClass \hide
-      itemD .find \.comments ?.toggleClass \hide
+      $(e.target) .closest \.list-group-item .toggleClass \expand
+
 
     $(\.items-list).on \click ,  \.comment-button , (e)->
-      $ @ .closest \.list-group-item .find \.comment-text .toggleClass \hide
+      ct=$ @ .closest \.list-group-item .find \.comment-text
+      ct .toggleClass \hide
+      if not ct.hasClass \hide
+        ct.find \.text-comment .focus!
+
+    $(\.items-list).on \click , \.btn-goto , (e)->
+      id= $(e.target) .closest \.item-brief .data \id
+      fd=$ ".list-group-item[data-id=#id]"
+      if fd.size!==1 then
+        fd.addClass \expand
+        $ \.items-list .scrollTo(".list-group-item[data-id=#id]")
+
+      else
+        #FIXME what if not find? maybe not displayed, maybe not known.
+
     $(\.items-list).on 'mouseenter mouseleave' \.list-group-item  (e)->
       ($(e .target) .closest \.list-group-item )[if e.type == \mouseenter then \addClass else \removeClass] \hover
+      e.preventDefault!
+    $(\.items-list).on 'mouseenter mouseleave' \.item-brief  (e)->
+      ($(e .target) .closest \.item-brief )[if e.type == \mouseenter then \addClass else \removeClass] \hover
       e.preventDefault!
 
   {update,view}
