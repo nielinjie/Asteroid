@@ -183,6 +183,9 @@
         item = addDown(refId);
         return updateItem(refId);
       });
+      $('.items-list').on('dblclick', '.list-group-item', function(e){
+        return $(e.target).closest('.list-group-item').toggleClass('expand');
+      });
       $('.items-list').on('click', '.expand-button', function(e){
         return $(e.target).closest('.list-group-item').toggleClass('expand');
       });

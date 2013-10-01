@@ -167,6 +167,9 @@ define [\repository, \template!./items,\template!./item,\template!./itemBrief, \
       item=addDown(refId)
       updateItem(refId)
 
+    $(\.items-list).on \dblclick , \.list-group-item , (e)->
+      $(e.target) .closest \.list-group-item .toggleClass \expand
+
     $(\.items-list).on \click , \.expand-button , (e)->
       $(e.target) .closest \.list-group-item .toggleClass \expand
 
@@ -183,7 +186,6 @@ define [\repository, \template!./items,\template!./item,\template!./itemBrief, \
       if fd.size!==1 then
         fd.addClass \expand
         $ \.items-list .scrollTo(".list-group-item[data-id=#id]")
-
       else
         #FIXME what if not find? maybe not displayed, maybe not known.
 
