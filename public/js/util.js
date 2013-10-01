@@ -41,6 +41,33 @@
           return buffer[key] = value;
         };
         return cache;
+      },
+      get: function(url){
+        var _re;
+        _re = [];
+        $.ajax(url, {
+          async: false,
+          dataType: 'json'
+        }).done(function(it){
+          return _re = it;
+        });
+        return _re;
+      },
+      post: function(url, data){
+        return $.ajax(url, {
+          async: false,
+          type: 'POST',
+          data: data,
+          dataType: 'json'
+        });
+      },
+      put: function(url, data){
+        return $.ajax(url, {
+          async: false,
+          type: 'PUT',
+          data: data,
+          dataType: 'json'
+        });
       }
     };
   });

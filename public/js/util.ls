@@ -10,7 +10,6 @@ define [\moment,\underscore], (moment,_)->
       text
     else
       text.substr(0,length-2)+\……
-
   memorize:(fun)->
     buffer = {};
     cache = ->
@@ -29,3 +28,23 @@ define [\moment,\underscore], (moment,_)->
       buffer[key] := value;
     cache
 
+  get:(url) ->
+    _re=[]
+    $ .ajax url ,
+      {async:false,dataType:\json}
+    .done ->
+      _re:=it
+    _re
+  post:(url, data) ->
+    $ .ajax url , do
+      async:false
+      type:\POST
+      data: data
+      dataType: \json
+
+  put:(url, data) ->
+    $ .ajax url , do
+      async:false
+      type:\PUT
+      data: data
+      dataType: \json
