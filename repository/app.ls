@@ -1,8 +1,11 @@
 require! \express
 require! \./version.js
+require! \./sync.js
+
 app=express()
 app.use(\/public express.static('\../public'))
 app.use(express.bodyParser())
+
 
 require! \./db.js
 
@@ -38,6 +41,9 @@ app.put \/me (req,res) ->
   user.version=version.plus(user.version)
   db.users.insert user, ->
     res.status 200 .send user.id
-
+app.get \/sync (req,res) ->
+  sync.sync do
+    url: \http://localhost:4731
+  res.status 200 .send ''
 
 app.listen(process.env.PORT || 4730);
