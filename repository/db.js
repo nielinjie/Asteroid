@@ -3,26 +3,44 @@
   var nedb, db;
   nedb = require('nedb');
   db = {};
-  db.items = new nedb({
-    filename: "./data/items",
-    autoload: true
-  });
-  db.items.ensureIndex({
-    fieldname: 'id',
-    unique: true
-  });
-  db.users = new nedb({
-    filename: "./data/users",
-    autoload: true
-  });
-  db.users.ensureIndex({
-    fieldname: 'id',
-    unique: true
-  });
-  db.me = new nedb({
-    filename: "./data/me",
-    autoload: true
-  });
+  if (!process.argv[0] === 'data=memory') {
+    db.items = new nedb({
+      filename: "./data/items",
+      autoload: true
+    });
+    db.items.ensureIndex({
+      fieldname: 'id',
+      unique: true
+    });
+    db.users = new nedb({
+      filename: "./data/users",
+      autoload: true
+    });
+    db.users.ensureIndex({
+      fieldname: 'id',
+      unique: true
+    });
+    db.me = new nedb({
+      filename: "./data/me",
+      autoload: true
+    });
+  } else {
+    db.items = new nedb({
+      autoload: true
+    });
+    db.items.ensureIndex({
+      unique: true
+    });
+    db.users = new nedb({
+      autoload: true
+    });
+    db.users.ensureIndex({
+      unique: true
+    });
+    db.me = new nedb({
+      autoload: true
+    });
+  }
   exports.items = db.items;
   exports.users = db.users;
   exports.me = db.me;
