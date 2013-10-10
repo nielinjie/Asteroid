@@ -1,0 +1,19 @@
+<div class="panel-heading">Me</div>
+
+<div class="panel-body  list-group me">
+    <div class="list-group-item">
+        <div class="avatar">
+            <img src="<%=picture%>"/>
+        </div>
+        <p class="name">
+            <%=name.first%> <%=name.last%>
+        </p>
+        <div class="btn edit-btn">
+            <i class="icon-edit"></i>
+        </div>
+    </div>
+    <div class="list-group-item  my-status ">
+    </div>
+    <div class="list-group-item repository-status ">
+    </div>
+</div>

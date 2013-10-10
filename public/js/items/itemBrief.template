@@ -1,0 +1,13 @@
+<div class="item-brief" data-id="<%=id%>">
+    <div class="avatar"><img src="<%=picture%>"/></div>
+    <div class="list-group-item-text text-p">
+        <p><%=text%></p>
+    </div>
+    <div class="btn-toolbar goto">
+        <div class="btn-group  btn-group-xs">
+            <div class="btn btn-default btn-goto">
+                <i class="icon-arrow-right"></i>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="edit-me form-horizontal">
+    <div class="form-group">
+        <label class="col-lg-2">姓名：</label>
+        <div class="col-lg-5">
+            <input type="text" class="form-control first-name" placeholder="FirstName" value="<%=name.first%>">
+        </div>
+        <div class="col-lg-5">
+            <input type="text" class="form-control last-name" placeholder="LastName" value="<%=name.last%>">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2">Email：</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control email" placeholder="Email" value="<%=email%>">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2">头像：</label>
+        <div class="col-lg-8">
+            <input type="text" class="form-control picture" placeholder="Picture" value="<%=picture%>">
+        </div>
+        <div class="avatar col-lg-2"><img class="preview" src="<%=picture%>" alt="picture"/></div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2">简介：</label>
+        <div class="col-lg-10">
+            <textarea class="form-control memo" placeholder="简介"><%=memo%></textarea>
+        </div>
+    </div>
+    <button class="btn btn-default cancel">取消</button>
+    <button class="btn btn-primary ok">确定</button>
+</div>
+

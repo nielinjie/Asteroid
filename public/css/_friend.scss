@@ -1,0 +1,15 @@
+.friends .avatar img{
+  width: 64px;
+  height: 64px;
+  float: left;
+  margin-right: 5px;
+  border-radius: 32px;
+}
+.friends-list{
+  height: 600px;
+  overflow-y: auto;
+}
+.friends-list .list-group-item {
+  min-height: 84px;
+
+}

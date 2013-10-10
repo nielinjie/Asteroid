@@ -1,0 +1,28 @@
+.me {
+  .avatar {
+    display: inline-block;
+    img{
+      width: 64px;
+      height: 64px;
+      margin-right: 5px;
+      border-radius: 32px;
+    }
+  }
+  .name {
+    display: inline-block;
+  }
+}
+
+.edit-me {
+  min-width: 600px;
+  .avatar {
+    margin-top: 5px;
+    img{
+      width: 64px;
+      height: 64px;
+      margin-right: 5px;
+      border-radius: 32px;
+    }
+  }
+}
+

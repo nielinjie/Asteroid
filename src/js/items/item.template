@@ -1,6 +1,0 @@
-<div class="list-group-item">
-    <p class="list-group-item-heading">
-        <div class="avatar"><img src="<%=author.picture%>"/></div>
-        <%=author.name.first%> <%=author.name.last%></p>
-    <p class="list-group-item-text"><%=text%></p>
-</div>

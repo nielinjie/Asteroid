@@ -1,0 +1,27 @@
+
+$blue: #477fbd;
+$yellow: #c39f4a;
+$green: #3b8057;
+$red: #7c2107;
+
+.popover {
+  max-width: 1000px;
+}
+
+//light to dark
+$blue0: lighten($blue,80%);
+$blue1: lighten($blue,60%);
+$blue2: lighten($blue,40%);
+$blue3: lighten($blue,30%);
+
+
+@import "friend";
+@import "item";
+@import "me";
+.jumbotron {
+  padding: 2px;
+}
+.margin-5{
+  margin-right: 5px;
+}
+

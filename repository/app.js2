@@ -1,0 +1,20 @@
+var express = require('express');
+var app = express();
+
+var dummyUsers = require('./dummy/dummyUsers').users
+var dummyItems = require('./dummy/dummyText').items
+
+var db=require('./db.js');
+
+app.get('/', function(req, res) {
+    db.items(function(err,data){
+        console.log("here");
+        res.type('text/json');
+        res.send(data);
+    })
+
+});
+
+app.listen(process.env.PORT || 4730);
+
+
